@@ -13,6 +13,11 @@
   }
 }
 
+body
+{
+  background-color: lightgray;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -36,3 +41,5 @@
     transform: rotate(360deg);
   }
 }
+
+
