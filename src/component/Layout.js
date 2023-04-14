@@ -3,6 +3,7 @@ import Sidebar from './Sidebar'
 import Header from './Header'
 import { Outlet } from 'react-router-dom'
 import DashboardTopgrid from './DashboardTopgrid'
+import Dashboard from './Dashboard'
 
 
 export default function Layout() {
@@ -11,7 +12,7 @@ export default function Layout() {
      <Sidebar />
       <div className="flex-1 bg-white">
         <div> <Header /> </div>
-        <div className="p-4"> {<Outlet />}</div>
+          <div className="p-4"> {<Outlet />}</div>
       </div>
       
       

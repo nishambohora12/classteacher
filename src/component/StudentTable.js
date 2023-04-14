@@ -1,16 +1,49 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 
 const design =
   'p-6 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 
-export default function StudentTable() {
+export default function StudentTable()
+ {
+
+  const [form,setform] = useState({});
+  const [students, setStudents]= useState({});
+
+  const handleform = (e)=>
+  {
+    console.log(e.target.value,e.target.name);
+    setform({
+      ...form,
+      [e.target.name]:e.target.value
+    })
+    
+  }
+
+  const handleSubmit = async (e) =>{
+     
+    e.preventDefault();
+   
+    const response = await fetch('http://localhost:8080/',
+    {
+      method:'POSt',
+      body:JSON.stringify(form),
+      headers:{
+        'Content-Type':'application/json'
+      }
+    })
+    const data = await response.json();
+    console.log(data);
+  }
+
   return (
     <div>
       This is student <Link to="/dashboard">Click to</Link>
 
-      <form>
+      <form onSubmit={handleSubmit}>
+        <p>{JSON.stringify(form)}</p>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
            
@@ -19,16 +52,17 @@ export default function StudentTable() {
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
-                  <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">
                     First name
                   </label>
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
+                      name="firstName"
+                      id="firstName"
                       autoComplete="given-name"
                       className={design}
+                      onChange={handleform}
                     />
                   </div>
                 </div>
@@ -40,10 +74,11 @@ export default function StudentTable() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="last-name"
+                      name="LastName"
                       id="last-name"
                       autoComplete="family-name"
                       className={design}
+                      onChange={handleform}
                     />
                   </div>
                 </div>
@@ -55,10 +90,11 @@ export default function StudentTable() {
                   <div className="mt-2">
                     <input
                       type="date"
-                      name="date-of-birth"
+                      name="dateOfBirth"
                       id="date-of-birth"
                       autoComplete="family-name"
                       className={design}
+                      onChange={handleform}
                     />
                   </div>
                 </div>
@@ -69,10 +105,11 @@ export default function StudentTable() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="blood-group"
+                      name="bloodGroup"
                       id="blood-group"
                       autoComplete="family-name"
                       className={design}
+                      onChange={handleform}
                     />
                   </div>
                 </div>
@@ -88,27 +125,13 @@ export default function StudentTable() {
                       type="email"
                       autoComplete="email"
                       className={design}
+                      onChange={handleform}
+                     
                     />
                   </div>
                 </div>
 
-                <div className="sm:col-span-3">
-                  <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
-                    Country
-                  </label>
-                  <div className="mt-2">
-                    <select
-                      id="country"
-                      name="country"
-                      autoComplete="country-name"
-                      className={design}
-                    >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
-                    </select>
-                  </div>
-                </div>
+         
 
                 <div className="col-span-full">
                   <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
@@ -117,9 +140,10 @@ export default function StudentTable() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="street-address"
+                      name="streetAddress"
                       id="street-address"
                       autoComplete="street-address"
+                      onChange={handleform}
                       className={design}
                     />
                   </div>
@@ -135,6 +159,7 @@ export default function StudentTable() {
                       name="city"
                       id="city"
                       autoComplete="address-level2"
+                      onChange={handleform}
                       className={design}
                     />
                   </div>
@@ -151,6 +176,7 @@ export default function StudentTable() {
                       id="region"
                       autoComplete="address-level1"
                       className={design}
+                      onChange={handleform}
                     />
                   </div>
                 </div>
@@ -162,10 +188,11 @@ export default function StudentTable() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="postal-code"
+                      name="postalCode"
                       id="postal-code"
                       autoComplete="postal-code"
                       className={design}
+                      onChange={handleform}
                     />
                   </div>
                 </div>
