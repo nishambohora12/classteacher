@@ -1,9 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import DashboardTopgrid from './DashboardTopgrid'
+import Dashboardsecgrid from './Dashboardsecgrid'
+import Chart from './Chart'
 export default function Dashboard() {
   return (
     <div>
-      This is Dashboard <Link to="/studentTable">Click to</Link>
+      <DashboardTopgrid/>
+      <Dashboardsecgrid/>
+      <Chart/>
       </div>
   )
 }

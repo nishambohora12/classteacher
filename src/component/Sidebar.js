@@ -18,7 +18,7 @@ export default function Sidebar()
     
     return (
 
-        <div className=" bg-neutral-900 w-60  p-5 flex flex-col text-white rounded-br-2xl  h-screen drop-shadow-3xl py-4 ">
+        <div className=" bg-black w-60  p-5 flex flex-col text-white rounded-br-2xl  h-screen drop-shadow-3xl py-4 ">
             <div className='flex items-center gap-2 px-1 py-3'>
                 <FaWindows fontSize={24} />
                 <span className='text-neutral-100 text-lg'>Dashboard</span>
