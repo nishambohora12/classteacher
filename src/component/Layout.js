@@ -8,11 +8,15 @@ import Dashboard from './Dashboard'
 
 export default function Layout() {
   return (
-    <div className='flex flex-row h-screen w-screen overflow-hidden '>
-     <Sidebar />
-      <div className="flex-1 bg-white">
-        <div> <Header /> </div>
-          <div className="p-4"> {<Outlet />}</div>
+    <div className='flex flex-col h-screen '>
+      <div className='flex flex-1 '>
+         <Sidebar />
+        <div className="flex-1 ">
+        <div> <Header  /> </div>
+
+
+          <div className="  p-10"> {<Outlet />}</div>
+      </div>
       </div>
       
       

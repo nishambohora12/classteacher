@@ -4,7 +4,8 @@ import Layout from './component/Layout';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
-import StudentTable from './component/StudentTable';
+import Addstudent from './component/AddStudent';
+import DisplayStudent from './component/DisplayStudent';
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="Dashboard" element={<Dashboard />} />
-          <Route path="studentTable" element={<StudentTable />} />
+          <Route path="displayStudent" element={<DisplayStudent />} />
+          <Route path="addStudent" element={<Addstudent />} />
         </Route>
 
        

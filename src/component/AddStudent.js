@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 const design =
   'p-6 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 
-export default function StudentTable()
+export default function AddStudent()
  {
 
   const [form,setform] = useState({});
@@ -34,23 +34,21 @@ export default function StudentTable()
         'Content-Type':'application/json'
       }
     })
+    setform({})
     const data = await response.json();
-    console.log(data);
+   
   }
 
   return (
     <div>
-      This is student <Link to="/dashboard">Click to</Link>
-
-      <form onSubmit={handleSubmit}>
-        <p>{JSON.stringify(form)}</p>
-        <div className="space-y-12">
+      <form onSubmit={handleSubmit} >
+           <div className="space-y-8">
           <div className="border-b border-gray-900/10 pb-12">
            
               <h2 className="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">Please Validate Data Before Submission</p>
 
-              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="mt-8 grid grid-cols-1 gap-x-4 gap-y-3 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">
                     First name
