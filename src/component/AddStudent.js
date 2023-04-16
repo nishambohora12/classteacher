@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link  } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form';
 
 
 const design =
@@ -25,18 +26,23 @@ export default function AddStudent()
   const handleSubmit = async (e) =>{
      
     e.preventDefault();
-   
+    alert("Form submitted Successfully");
+    window.location.reload();
+  
     const response = await fetch('http://localhost:8080/',
     {
-      method:'POSt',
+      method:'POST',
       body:JSON.stringify(form),
       headers:{
         'Content-Type':'application/json'
       }
     })
-    setform({})
+
+    
+ 
     const data = await response.json();
-   
+    
+    
   }
 
   return (
@@ -72,7 +78,7 @@ export default function AddStudent()
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="LastName"
+                      name="lastName"
                       id="last-name"
                       autoComplete="family-name"
                       className={design}

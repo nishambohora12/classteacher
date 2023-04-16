@@ -40,10 +40,7 @@ const Student = mongoose.model("Student", studentData);
 
 
 // setup a 'route' to listen on the default url path (http://localhost)
-app.get("/", function (req, res) {
 
-  res.send("Hello World<br /><a href='/about'>Go to the about page</a>");
-});
 
 
 app.post("/", async  function (req, res) {
@@ -60,6 +57,13 @@ app.post("/", async  function (req, res) {
 
  const doc = await student.save();
 });
+
+app.get("/",async ( req, res)=>
+{
+   const docs =    await Student.find({});
+   console.log(docs);
+   res.json(docs);
+})
 
 // setup another route to listen on /about
 app.get("/about", function (req, res) {
