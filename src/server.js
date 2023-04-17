@@ -23,6 +23,7 @@ function onHttpStart() {
 }
 
 const studentData = new mongoose.Schema({
+ 
   firstName: String,
   lastName: String,
   dateOfBirth: String,
@@ -43,7 +44,7 @@ const Student = mongoose.model("Student", studentData);
 
 
 
-app.post("/", async  function (req, res) {
+app.post("/", async function (req, res) {
   let student = new Student;
   student.firstName = req.body.firstName;
   student.lastName = req.body.lastName;
@@ -55,28 +56,42 @@ app.post("/", async  function (req, res) {
   student.region = req.body.region;
   student.postalCode = req.body.postalCode;
 
- const doc = await student.save();
+  const doc = await student.save();
 });
 
-app.get("/",async ( req, res)=>
-{
-   const docs =    await Student.find({});
-   console.log(docs);
-   res.json(docs);
+app.get("/", async (req, res) => {
+  
+  const docs = await Student.find({});
+  console.log(docs);
+  res.json(docs);
 })
 
-app.get("/:id",async ( req, res)=>
-{
-   const docs =    await Student.find(_id);
-   console.log(docs);
-   res.json(docs);
+
+
+app.get('/:id', async (req, res) => {
+
+  const id=req.params.id;
+  const trimmed_id =id.trim();
+    try{
+
+
+        const data = await Student.filter(trimmed_id);
+        
+        res.json(data);
+       
+      
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+    
 })
 
-app.put("/:id", async(res,req) =>{
+app.put("/:id", async (res, req) => {
 
 })
 
-app.delete("/:id", async(res,req) =>{
+app.delete("/:id", async (res, req) => {
 
 })
 
