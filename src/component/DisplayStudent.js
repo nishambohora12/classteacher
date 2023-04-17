@@ -9,7 +9,7 @@ export default function DisplayStudent() {
 
     const [student, setstudent] = useState([]);
 
-    const navigate = useNavigate();
+    
 
     const getUsers = async () => {
         const response = await fetch('http://localhost:8080/',
@@ -61,7 +61,7 @@ export default function DisplayStudent() {
 
                             return (
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <th key={i._id}  onClick={() => { this.props.history.push(`/studentprofile/${i._id}`) }} scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{`${i.firstName} ${i.lastName}`}</th> 
+                                 <Link to={`/${i._id}`}><th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{`${i.firstName} ${i.lastName}`}</th> </Link>   
                                     <td class="px-6 py-4">{i.dateOfBirth}</td>
                                     <td class="px-6 py-4">{i.bloodGroup}</td>
                                     <td class="px-6 py-4">{i.email}  {i.region}</td>

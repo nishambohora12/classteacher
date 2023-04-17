@@ -1,21 +1,36 @@
-import React from 'react';
-import { Component } from 'react';
-import { useState } from 'react';
+import React from 'react'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import axios from "axios"
 
+export default function StudentProfile() {
 
-class StudentProfile extends Component 
-{
-    
+      const [student, setstudent] = useState(null); 
+      const studentId    = useParams();
+               
 
-   
-  
+    const getSingleStudent = async (_id) => {
+        
+        const response = await fetch(`http://localhost:8080/${_id}`, {
+            method: 'GET'
 
-render()
-{
-    return(
+        });
+     
+        const data  = await response.json();
+        console.log(data);
+        setstudent({...data});
+    }
 
-        <div>
-
+    useEffect(() => {
+        getSingleStudent();
+    }, [studentId])
+    return (
+        
+        <div> 
+            
+      
             <div className="px-4 sm:px-0">
                 <h3 className="text-base font-semibold leading-7 text-gray-900">Applicant Information</h3>
                 <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p>
@@ -24,23 +39,23 @@ render()
                 <dl className="divide-y divide-gray-100">
                     <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">First name</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{this.firstName}</dd>
+                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">data</dd>
                     </div>
                     <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">Last name</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{this.latname}</dd>
+                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">data</dd>
                     </div>
                     <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">Date of Birth</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{this.dateofbirth}</dd>
+                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">data</dd>
                     </div>
                     <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">Email address</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{this.email}</dd>
+                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">data</dd>
                     </div>
                     <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">Blood Group</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{this.bloodgroup}</dd>
+                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">hello</dd>
                     </div>
                     <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="text-sm font-medium leading-6 text-gray-900">Address</dt>
@@ -54,11 +69,12 @@ render()
                 </dl>
             </div>
         </div>
-    );
-
+    )
 }
 
-}
 
-export default StudentProfile;
+
+
+
+
 
