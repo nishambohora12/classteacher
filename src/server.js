@@ -65,10 +65,23 @@ app.get("/",async ( req, res)=>
    res.json(docs);
 })
 
+app.get("/:id",async ( req, res)=>
+{
+   const docs =    await Student.find(_id);
+   console.log(docs);
+   res.json(docs);
+})
+
+app.put("/:id", async(res,req) =>{
+
+})
+
+app.delete("/:id", async(res,req) =>{
+
+})
+
 // setup another route to listen on /about
-app.get("/about", function (req, res) {
-  res.send("<h3>About</h3>");
-});
+
 
 // setup http server to listen on HTTP_PORT
 app.listen(HTTP_PORT, onHttpStart);

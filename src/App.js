@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import Addstudent from './component/AddStudent';
 import DisplayStudent from './component/DisplayStudent';
+import StudentProfile from './component/StudentProfile';
 
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="displayStudent" element={<DisplayStudent />} />
           <Route path="addStudent" element={<Addstudent />} />
+          <Route path="studentprofile" element={<StudentProfile/>}/>
+          <Route path="/studentprofile" render={(props) => <StudentProfile {...props}/>}/>
         </Route>
 
        

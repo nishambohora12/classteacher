@@ -1,9 +1,15 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import EditStudent from './EditStudent';
+import { Link } from 'react-router-dom';
+import StudentProfile from './StudentProfile';
+import { useNavigate } from 'react-router-dom';
 export default function DisplayStudent() {
 
 
-const [student, setstudent] = useState([]);
+    const [student, setstudent] = useState([]);
+
+    const navigate = useNavigate();
 
     const getUsers = async () => {
         const response = await fetch('http://localhost:8080/',
@@ -21,8 +27,10 @@ const [student, setstudent] = useState([]);
     }, [])
 
 
+
+
     return (
-        <div>
+        <div >
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -49,21 +57,20 @@ const [student, setstudent] = useState([]);
                         </tr>
                     </thead>
                     <tbody>
-                        {student.map((i)=>{
+                        {student.map((i) => {
 
                             return (
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">    
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{ `${i.firstName} ${i.lastName}`}</th>
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <th key={i._id}  onClick={() => { this.props.history.push(`/studentprofile/${i._id}`) }} scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{`${i.firstName} ${i.lastName}`}</th> 
                                     <td class="px-6 py-4">{i.dateOfBirth}</td>
                                     <td class="px-6 py-4">{i.bloodGroup}</td>
                                     <td class="px-6 py-4">{i.email}  {i.region}</td>
-                                    <td class="px-6 py-4">{ `${i.streetAddress}, ${i.city}, ${i.region} ${i.postalCode}`}</td>
+                                    <td class="px-6 py-4">{`${i.streetAddress}, ${i.city}, ${i.region} ${i.postalCode}`}</td>
 
-                                    
                                 </tr>
                             )
                         })}
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -71,3 +78,4 @@ const [student, setstudent] = useState([]);
         </div>
     )
 }
+

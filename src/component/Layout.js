@@ -11,11 +11,11 @@ export default function Layout() {
     <div className='flex flex-col h-screen '>
       <div className='flex flex-1 '>
          <Sidebar />
-        <div className="flex-1 ">
+        <div className=" flex-1 ">
         <div> <Header  /> </div>
 
 
-          <div className="  p-10"> {<Outlet />}</div>
+          <div className=" p-10"> {<Outlet />}</div>
       </div>
       </div>
       
