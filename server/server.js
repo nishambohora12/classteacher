@@ -23,7 +23,7 @@ function onHttpStart() {
 }
 
 const studentData = new mongoose.Schema({
- 
+  studentId: { type: mongoose.SchemaTypes.ObjectId, required: true, index: true, String},
   firstName: String,
   lastName: String,
   dateOfBirth: String,
@@ -46,6 +46,7 @@ const Student = mongoose.model("Student", studentData);
 
 app.post("/", async function (req, res) {
   let student = new Student;
+  student.studentId = `${student._id}`;
   student.firstName = req.body.firstName;
   student.lastName = req.body.lastName;
   student.dateOfBirth = req.body.dateOfBirth;
@@ -68,14 +69,16 @@ app.get("/", async (req, res) => {
 
 
 
-app.get('/:id', async (req, res) => {
 
-  const id=req.params.id;
-  const trimmed_id =id.trim();
+app.get('/student/:id', async (req, res) => {
+
+  const id =req.params.id;
+
+ 
     try{
 
 
-        const data = await Student.filter(trimmed_id);
+        const data = await Student.findOne({_id:id});
         
         res.json(data);
        

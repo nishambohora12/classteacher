@@ -4,7 +4,9 @@ import EditStudent from './EditStudent';
 import { Link } from 'react-router-dom';
 import StudentProfile from './StudentProfile';
 import { useNavigate } from 'react-router-dom';
-export default function DisplayStudent() {
+
+export default function DisplayStudent()
+{
 
 
     const [student, setstudent] = useState([]);
@@ -61,7 +63,7 @@ export default function DisplayStudent() {
 
                             return (
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                 <Link to={`/${i._id}`}><th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{`${i.firstName} ${i.lastName}`}</th> </Link>   
+                                 <Link to={`/student/${i._id}`}><th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{`${i.firstName} ${i.lastName}`}</th> </Link>   
                                     <td class="px-6 py-4">{i.dateOfBirth}</td>
                                     <td class="px-6 py-4">{i.bloodGroup}</td>
                                     <td class="px-6 py-4">{i.email}  {i.region}</td>
