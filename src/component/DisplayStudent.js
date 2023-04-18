@@ -66,7 +66,7 @@ export default function DisplayStudent()
                                  <Link to={`/student/${i._id}`}><th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{`${i.firstName} ${i.lastName}`}</th> </Link>   
                                     <td class="px-6 py-4">{i.dateOfBirth}</td>
                                     <td class="px-6 py-4">{i.bloodGroup}</td>
-                                    <td class="px-6 py-4">{i.email}  {i.region}</td>
+                                    <td class="px-6 py-4">{i.email}</td>
                                     <td class="px-6 py-4">{`${i.streetAddress}, ${i.city}, ${i.region} ${i.postalCode}`}</td>
 
                                 </tr>

@@ -7,20 +7,25 @@ import { Link } from 'react-router-dom';
 import Addstudent from './component/AddStudent';
 import DisplayStudent from './component/DisplayStudent';
 import StudentProfile from './component/StudentProfile';
-
+import Login from './login/Login';
 
 function App() {
   return (
     <Router>
       <Routes>
+        
+      <Route path="login" element={<Login/>}/>
+
         <Route path="/" element={<Layout />}>
-          <Route path="Dashboard" element={<Dashboard />} />
-          <Route path="displayStudent" element={<DisplayStudent />} />
+         
+          <Route index element={<Dashboard />} />
+          <Route path='displaystudent' element={<DisplayStudent />} />
           <Route path="addStudent" element={<Addstudent />} />
           <Route path="student/:id" element={<StudentProfile />} />
-
+    
         </Route>
-
+      
+        <Route path="login" element={<Login/>}/>
 
       </Routes>
     </Router>

@@ -36,7 +36,7 @@ export default function StudentProfile() {
 
 
 
-            <div className="mt-6 border-t border-gray-100 bg-white elative overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="mt-6 border-t border-gray-100 bg-white relative overflow-x-auto shadow-md sm:rounded-lg">
                 <dl className="divide-y divide-gray-100  border-b dark:bg-gray-800 dark:border-gray-700 p-6 dark:text-gray-400">
 
                     <div className="px-4 sm:px-0">
