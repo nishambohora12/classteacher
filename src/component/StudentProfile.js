@@ -50,7 +50,7 @@ export default function StudentProfile() {
                     </div>
                     <div className="px-2 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="font-medium text-gray-900 whitespace-nowrap dark:text-white">Last name</dt>
-                        <dd className="font-medium text-gray-900 whitespace-nowrap  dark:text-gray-400"> {student.lastNane}</dd>
+                        <dd className="font-medium text-gray-900 whitespace-nowrap  dark:text-gray-400"> {student.lastName}</dd>
                     </div>
 
 
