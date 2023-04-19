@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import EditStudent from './EditStudent';
+
 import { Link } from 'react-router-dom';
 import StudentProfile from './StudentProfile';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ export default function DisplayStudent() {
 
 
     const [student, setstudent] = useState([]);
-    const [search,setsearch] = useState('');
+    const [search, setsearch] = useState('');
 
 
     const getUsers = async () => {
@@ -33,12 +33,12 @@ export default function DisplayStudent() {
     return (
         <div >
             <div className='py-4'>
-            <input type="text"
-             placeholder='Search Student' 
-             className=' uppercase w-full p-4 px-4 text-sm focus:outline-none h-10 active:outline-none w-[18rem] border rounded-xl dark:bg-gray-700 dark:text-gray-400 shadow-l hover:shadow-lg'
-             onChange={(e) =>setsearch(e.target.value)}
-            />
-           </div>
+                <input type="text"
+                    placeholder='Search Student'
+                    className=' uppercase w-full p-4 px-4 text-sm focus:outline-none h-10 active:outline-none w-[18rem] border rounded-xl dark:bg-gray-700 dark:text-gray-400 shadow-l hover:shadow-lg'
+                    onChange={(e) => setsearch(e.target.value)}
+                />
+            </div>
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
@@ -66,16 +66,15 @@ export default function DisplayStudent() {
                         </tr>
                     </thead>
                     <tbody>
-                        {student.filter((i)=>
-                        {
-                            return search?.toLocaleLowerCase() === '' ? i : i.firstName?.toLowerCase()?.includes(search) 
-                            || search?.toLocaleLowerCase() === '' ? i : i.lastName?.toLowerCase()?.includes(search) 
-                            || search?.toLocaleLowerCase() === '' ? i : i.bloodGroup?.toLowerCase()?.includes(search)
-                            || search?.toLocaleLowerCase() === '' ? i : i.city?.toLowerCase()?.includes(search)
-                            || search?.toLocaleLowerCase() === '' ? i : i.streetAddress?.toLowerCase()?.includes(search)
-                             || search?.toString() === '' ? i : i.dateOfBirth?.toString()?.includes(search)
-                             || search?.toLocaleLowerCase() === '' ? i : i.region?.toLowerCase()?.includes(search)
-                             || search?.toString() === '' ? i : i.email?.toString()?.includes(search)
+                        {student.filter((i) => {
+                            return search?.toLocaleLowerCase() === '' ? i : i.firstName?.toLowerCase()?.includes(search)
+                                || search?.toLocaleLowerCase() === '' ? i : i.lastName?.toLowerCase()?.includes(search)
+                                    || search?.toLocaleLowerCase() === '' ? i : i.bloodGroup?.toLowerCase()?.includes(search)
+                                        || search?.toLocaleLowerCase() === '' ? i : i.city?.toLowerCase()?.includes(search)
+                                            || search?.toLocaleLowerCase() === '' ? i : i.streetAddress?.toLowerCase()?.includes(search)
+                                                || search?.toString() === '' ? i : i.dateOfBirth?.toString()?.includes(search)
+                                                    || search?.toLocaleLowerCase() === '' ? i : i.region?.toLowerCase()?.includes(search)
+                                                        || search?.toString() === '' ? i : i.email?.toString()?.includes(search)
                         }).map((i) => {
 
                             return (
@@ -95,7 +94,7 @@ export default function DisplayStudent() {
             </div>
 
         </div>
-       
+
     )
 }
 

@@ -90,7 +90,23 @@ app.get('/student/:id', async (req, res) => {
     
 })
 
-app.put("/:id", async (res, req) => {
+app.put("/update/:id", async (res, req) => {
+  const id =req.params.id;
+
+ 
+    try{
+
+
+        const data = await Student.findByIdAndUpdate({_id:id});
+        
+        res.json(data);
+       
+      
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+    
 
 })
 
