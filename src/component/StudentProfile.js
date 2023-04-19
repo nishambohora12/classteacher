@@ -42,6 +42,7 @@ export default function StudentProfile() {
                     <div className="px-4 sm:px-0">
                         <h3 className="text-base font-semibold leading-7 font-medium dark:text-white">Applicant Information</h3>
                         <p className="mt-1 max-w-2xl text-sm leading-6 dark:text-white">Personal details and application.</p>
+                        
                     </div>
 
                     <div className="px-2 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 ">
@@ -75,6 +76,9 @@ export default function StudentProfile() {
                     </div>
 
                 </dl>
+                <div className='content-center p-2 '>
+                <button className='p-3 border rounded-xl border dark:bg-gray-800 dark:border-gray-700 p-6 dark:text-gray-400 shadow-l hover:shadow-lg'>Edit Student</button>
+                </div>
             </div>
 
         </div>
