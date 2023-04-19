@@ -90,9 +90,9 @@ app.get('/student/:id', async (req, res) => {
     
 })
 
-app.put("/student/:id", async (res, req) =>
+app.put("/update/:id", async (res, req) =>
  {
-  const newid =req.params.id;
+  const newid = req.params.id;
   console.log(newid);
 
 

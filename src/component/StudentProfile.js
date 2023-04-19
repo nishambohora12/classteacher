@@ -12,7 +12,7 @@ export default function StudentProfile()
     const [studentchange, setstudentchange] = useState([]);
 
     const { id } = useParams();
-    console.log(id);
+ 
 
     const getSingleStudent = async (id) => {
 
@@ -48,7 +48,7 @@ export default function StudentProfile()
 
     const updateStudent = async (id) => {
         console.log(id);
-        const response = await fetch(`http://localhost:8080/student/${id}`, {
+        const response = await fetch(`http://localhost:8080/update/${id}`, {
             method:'put',
             body:JSON.stringify(studentchange),
             headers:{
@@ -56,6 +56,9 @@ export default function StudentProfile()
             }
 
         });
+        
+        let data = await response.json();
+        console.log(data);
       
 
        
