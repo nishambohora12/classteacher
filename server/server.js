@@ -23,7 +23,7 @@ function onHttpStart() {
 }
 
 const studentData = new mongoose.Schema({
-  studentId: { type: mongoose.SchemaTypes.ObjectId, required: true, index: true, String},
+
   firstName: String,
   lastName: String,
   dateOfBirth: String,
@@ -46,7 +46,7 @@ const Student = mongoose.model("Student", studentData);
 
 app.post("/", async function (req, res) {
   let student = new Student;
-  student.studentId = `${student._id}`;
+  
   student.firstName = req.body.firstName;
   student.lastName = req.body.lastName;
   student.dateOfBirth = req.body.dateOfBirth;
@@ -90,25 +90,49 @@ app.get('/student/:id', async (req, res) => {
     
 })
 
-app.put("/update/:id", async (res, req) => {
-  const id =req.params.id;
+app.put("/student/:id", async (res, req) =>
+ {
+  const newid =req.params.id;
+  console.log(newid);
 
- 
-    try{
 
 
-        const data = await Student.findByIdAndUpdate({_id:id});
+    const student = await Student.findOne({_id:newid});
+
+
+    student.firstName= req.body.firstName;
+    student.firstName = req.body.firstName;
+    student.lastName = req.body.lastName;
+    student.dateOfBirth = req.body.dateOfBirth;
+    student.bloodGroup = req.body.bloodGroup;
+    student.email = req.body.email;
+    student.streetAddress = req.body.streetAddress;
+    student.city = req.body.city;
+    student.region = req.body.region;
+    student.postalCode = req.body.postalCode;
+
+     const newdata = await student.save();
         
-        res.json(data);
-       
+   console.log(newdata);
+     
       
-    }
-    catch(error){
-        res.status(500).json({message: error.message})
-    }
-    
 
+    
+    
 })
+
+
+
+  
+
+   
+  
+
+
+
+   
+
+
 
 app.delete("/:id", async (res, req) => {
 

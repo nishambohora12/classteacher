@@ -22,6 +22,7 @@ function App() {
           <Route path='displaystudent' element={<DisplayStudent />} />
           <Route path="addStudent" element={<Addstudent />} />
           <Route path="student/:id" element={<StudentProfile />} />
+          <Route path="update/:id" element={<StudentProfile />} />
     
         </Route>
       
