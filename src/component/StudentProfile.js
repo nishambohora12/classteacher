@@ -9,7 +9,7 @@ export default function StudentProfile()
 {
     ///get single student by ID//
     const [student, setstudent] = useState({});
-    const [studentchange, setstudentchange] = useState([]);
+    const [studentchange, setstudentchange] = useState({});
 
     const { id } = useParams();
  
@@ -30,6 +30,7 @@ export default function StudentProfile()
     useEffect(() => {
 
         getSingleStudent(id);
+    
   
 
     }, [id])
@@ -46,26 +47,62 @@ export default function StudentProfile()
     }
 
 
-    const updateStudent = async (id) => {
-        console.log(id);
-        const response = await fetch(`http://localhost:8080/update/${id}`, {
-            method:'put',
-            body:JSON.stringify(studentchange),
-            headers:{
-              'Content-Type':'application/json'
-            }
+    // const updateStudent = async () => {
+      
+    //     const response = await fetch(`http://localhost:8080/update`, {
+    //         method:'POST',
+    //         headers:{
+    //             'Content-Type':'application/json',
+    //           },
+    //         body:JSON.stringify(studentchange)
+           
 
-        });
+    //     });
         
-        let data = await response.json();
-        console.log(data);
+    //     const data = await response.json();
+    //     console.log(data);
       
 
        
 
-    }
+    // }
   
 
+
+    const updateStudent = async (e) =>{
+     
+        e.preventDefault()
+   
+        
+
+      
+        const response = await fetch(`http://localhost:8080/update/${id}`,
+        {
+          method:"PATCH",
+          body:JSON.stringify(studentchange),
+          headers:{
+            'Content-Type':'application/json'
+          }
+        });
+
+    
+        setShow(!show)
+      
+        window.location.reload();
+        const data = await response.json();
+        console.log(response);
+        
+
+        
+        
+      }
+  
+      useEffect(() => {
+
+         updateStudent(student);
+  
+
+    }, [student])
 
 
     ///changeing input filed on condition
@@ -118,7 +155,8 @@ export default function StudentProfile()
                         </dd>
                     </div>
 
-                </dl> : <dl className="divide-y divide-gray-100  border-b dark:bg-gray-800 dark:border-gray-700 p-6 dark:text-gray-400">
+                </dl> :
+                 <dl className="divide-y divide-gray-100  border-b dark:bg-gray-800 dark:border-gray-700 p-6 dark:text-gray-400">
 
                     <div className="px-4 sm:px-0">
                         <h3 className="text-base font-semibold leading-7 font-medium dark:text-white">Applicant Information</h3>
@@ -218,7 +256,7 @@ export default function StudentProfile()
                     <div className="px-2 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt className="font-medium text-gray-900 whitespace-nowrap dark:text-white">Address</dt>
 
-                        <div className='gap-2 flex flex-row'>
+                        <div className='gap-2 flex flex-col w-auto'>
 
                             <div>
 
@@ -227,7 +265,7 @@ export default function StudentProfile()
                                     name="streetAddress"
                                     id="streetAddress"
                                     autoComplete="given-name"
-                                    className='w-80 px-3 py-1 rounded-xl font-medium text-gray-900 whitespace-nowrap  dark:text-gray-900'
+                                    className=' px-3 py-1 rounded-xl font-medium text-gray-900 whitespace-nowrap  dark:text-gray-900'
                                     placeholder='Street Address'  
                                     onChange={handleform}
                                     defaultValue={`${student.streetAddress}`}
@@ -236,13 +274,13 @@ export default function StudentProfile()
                                 />
                             </div>
                             <div>
-
+                                
                                 <input
                                     type="text"
                                     name="city"
                                     id="city"
                                     autoComplete="given-name"
-                                    className='w-30 px-3 py-1 rounded-xl font-medium text-gray-900 whitespace-nowrap  dark:text-gray-900'
+                                    className=' px-3 py-1 rounded-xl font-medium text-gray-900 whitespace-nowrap  dark:text-gray-900'
                                     placeholder='city'       
                                     onChange={handleform}
                                     defaultValue={`${student.city}`}
@@ -257,7 +295,7 @@ export default function StudentProfile()
                                     name="region"
                                     id="region"
                                     autoComplete="given-name"
-                                    className='w-20 px-3 py-1 rounded-xl font-medium text-gray-900 whitespace-nowrap  dark:text-gray-900'
+                                    className=' px-3 py-1 rounded-xl font-medium text-gray-900 whitespace-nowrap  dark:text-gray-900'
                                     placeholder='state'   
                                     onChange={handleform}
                                     defaultValue={`${student.region}`}
@@ -272,7 +310,7 @@ export default function StudentProfile()
                                     name="postalCode"
                                     id="postalCode"
                                     autoComplete="given-name"
-                                    className='w-25 px-3 py-1 rounded-xl font-medium text-gray-900 whitespace-nowrap  dark:text-gray-900'
+                                    className=' px-3 py-1 rounded-xl font-medium text-gray-900 whitespace-nowrap  dark:text-gray-900'
                                     placeholder='Postal code'
                                     onChange={handleform}
                                     defaultValue={`${student.postalCode}`}
@@ -295,7 +333,7 @@ export default function StudentProfile()
 
                     }
                     
-                    { !show ? <div>   <button className='bg-green-500 text-white font-medium p-3 border rounded-xl border  shadow-l hover:shadow-lg ' onClick={()=> updateStudent(`${id}`)}>Update</button></div> : ''}
+                    { !show ? <div>   <button className='bg-green-500 text-white font-medium p-3 border rounded-xl border  shadow-l hover:shadow-lg ' onClick={updateStudent}>Update</button></div> : ''}
                 </div>
             </div>
 

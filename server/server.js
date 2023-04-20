@@ -1,4 +1,4 @@
-var express = require("express");
+const express = require("express");
 var app = express();
 var cors = require('cors');
 const bodyParser = require('body-parser');
@@ -14,6 +14,7 @@ mongoose.connect("mongodb+srv://nishambohora12:NishambohoraDatabase@studentdata.
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 
 
@@ -90,40 +91,53 @@ app.get('/student/:id', async (req, res) => {
     
 })
 
-app.put("/update/:id", async (res, req) =>
- {
-  const newid = req.params.id;
-  console.log(newid);
-
-
-
-    const student = await Student.findOne({_id:newid});
-
-
-    student.firstName= req.body.firstName;
-    student.firstName = req.body.firstName;
-    student.lastName = req.body.lastName;
-    student.dateOfBirth = req.body.dateOfBirth;
-    student.bloodGroup = req.body.bloodGroup;
-    student.email = req.body.email;
-    student.streetAddress = req.body.streetAddress;
-    student.city = req.body.city;
-    student.region = req.body.region;
-    student.postalCode = req.body.postalCode;
-
-     const newdata = await student.save();
-        
-   console.log(newdata);
-     
-      
-
-    
-    
-})
-
-
-
+// app.post("/student/:id", async function(res, req)
+//  {
   
+
+
+//     const student = await Student.findOne({_id:req.params});
+
+
+//     student.firstName= req.body.firstName;
+//     student.firstName = req.body.firstName;
+//     student.lastName = req.body.lastName;
+//     student.dateOfBirth = req.body.dateOfBirth;
+//     student.bloodGroup = req.body.bloodGroup;
+//     student.email = req.body.email;
+//     student.streetAddress = req.body.streetAddress;
+//     student.city = req.body.city;
+//     student.region = req.body.region;
+//     student.postalCode = req.body.postalCode;
+
+//      const newdata = await student.save();
+        
+//    console.log(newdata);
+   
+
+    
+    
+// })
+
+
+
+  app.patch("/update/:id", async(req,res)=>
+  {
+
+    try{
+      const {id} = req.params;
+      const updateStudent = await Student.findByIdAndUpdate(id,req.body,{
+        new: true
+      });
+      console.log(updateStudent);
+      res.status(201).json(updateStudent)
+
+    }
+    catch(error)
+    {
+      res.status(422).json(error);
+    }
+  })
 
    
   
